@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feedback Form</title>
+  <style>
+   
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url("C:\wamp\www\production\e1.jpg");
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+   
+    .container {
+      background: url("C:\wamp\www\production\e1.jpg") no-repeat center center/cover;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 1px 8px 20px rgba(0,0,0,0.25);
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.55);
+      border-radius: 16px;
+      z-index: 0;
+    }
+
+    .container h2, 
+    .container label, 
+    .container p, 
+    .container input, 
+    .container textarea, 
+    .container button {
+      position: relative;
+      z-index: 1; /* Ensure they appear above overlay */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      background: rgba(255,255,255,0.85);
+      color: #333;
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0 8px rgba(37,117,252,0.7);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 12px 16px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .note {
+      font-size: 90%;
+      margin-top: 12px;
+      text-align: center;
+      color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2> Feedback </h2>
+    <form id="feedbackForm" method="post" action="submit.php" novalidate>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" maxlength="150" placeholder="Your Name" />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" maxlength="255" placeholder="(Optional)" />
+
+      <label for="message">Message <span style="color:#ffb3b3">*</span></label>
+      <textarea id="message" name="message" rows="6" required maxlength="2000" placeholder=" "></textarea>
+
+      <button type="submit"> Submit Feedback</button>
+<button type="reset"> reset</button>  
+    <p class="note">Thank you :) , Your feedback helps us improve</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(e){
+      const msg = document.getElementById('message').value.trim();
+      if (!msg) { e.preventDefault(); alert('Please enter a feedback message.'); }
+    });
+  </script>
+</body>
+</html>
